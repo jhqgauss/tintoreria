@@ -34,7 +34,7 @@ def archivocombinacion(data):
 
 
 
-@app.route('/')
+@app.route('/https://git.heroku.com/tintoreyprogramacion.git',methods=['GET'])
 def index():
     return render_template('index.html')
 
