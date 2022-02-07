@@ -34,7 +34,7 @@ def archivocombinacion(data):
 
 
 
-@app.route('https://git.heroku.com/tintoreyprogramacion.git')
+@app.route('/')
 def index():
     return render_template('index.html')
 
@@ -52,7 +52,7 @@ def upload_file():
         else:
             file  = request.files['file']
             file.save(os.path.join('archives',file.filename))
-            ruta="https://git.heroku.com/tintoreyprogramacion.git"
+            ruta="/"
             tipo='Archivo añadido correctamente'
 
         return render_template('get_update.html',tipo=tipo,ruta=ruta)
