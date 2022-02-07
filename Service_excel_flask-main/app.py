@@ -52,7 +52,7 @@ def upload_file():
         else:
             file  = request.files['file']
             file.save(os.path.join('archives',file.filename))
-            ruta="https://git.heroku.com/tintoreyprogramacion.git/"
+            ruta="https://git.heroku.com/tintoreyprogramacion.git"
             tipo='Archivo añadido correctamente'
 
         return render_template('get_update.html',tipo=tipo,ruta=ruta)
@@ -67,7 +67,7 @@ def upload_file():
     return render_template('index.html',data=cobinacion)
 
 # la peticion put se reemplaza por get debido que html solo soporta post y get
-@app.route('/file/<int:rowindex>', methods=['GET'])
+@app.route('https://git.heroku.com/tintoreyprogramacion.git/file/<int:rowindex>', methods=['GET'])
 def update(rowindex):
     ab = load_workbook(filename = 'combinacion.xlsx', read_only=False)
     cv = ab['Sheet']
@@ -80,11 +80,11 @@ def update(rowindex):
 
     ab.save("combinacion.xlsx")
 
-    ruta="http://127.0.0.1:5000/file"
+    ruta="https://git.heroku.com/tintoreyprogramacion.git/file"
 
     return render_template('get_update.html',tipo='Actualizado correctamente',ruta=ruta)
 
-@app.route('/combination', methods=['GET'])
+@app.route('https://git.heroku.com/tintoreyprogramacion.git/combination', methods=['GET'])
 def combination():
 
     array1 = []
@@ -155,7 +155,7 @@ def combination():
 
     libro.save(filename="combinacion.xlsx")
 
-    ruta="http://127.0.0.1:5000/file"
+    ruta="https://git.heroku.com/tintoreyprogramacion.git/file"
 
     return render_template('get_update.html',tipo='Combinacion correcta',ruta=ruta)
 
