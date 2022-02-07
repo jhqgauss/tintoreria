@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- importaciones boostrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <title>Excel</title>
+</head>
+<body>
+    <nav class="navbar navbar-light bg-light">
+        <div class="container">
+          <a class="navbar-brand" href="#">
+            Excel
+          </a>
+        </div>
+    </nav>
+    <div>
+        <center>
+            <h2>Añadir y listar archivos de excel</h2>
+        </center>
+    </div>
+    <div class="container">
+      <div class="row align-items-start">
+        <div class="col">
+          <form method=post action="/file" enctype=multipart/form-data>
+            <input type=File name=file>
+            <input type=submit value="Cargar">
+          </form>
+        </div>
+        <div class="col">
+          <form method=get action="/combination" enctype=multipart/form-data>
+            <button type="submit" class="btn btn-success">combinacion</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-8" style="margin-left: auto;margin-right: auto;margin-top: 5%;">
+        <div class="card" style="display: inline-table !important;">
+            <div class="card-body">
+                <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>index</th>
+                        <th>Item</th>
+                        <th>Descripcion</th>
+                        <th>Cant mano UMP</th>
+                        <th>Nivel reorden</th>
+                        <th>Codigo</th>
+                        <th>Provedor</th>
+                        <th>Pendientes</th>
+                        <th>Programacion</th>
+                        <th>Actualizar</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for user in data %}
+                          <tr>
+                              <td>{{loop.index}}</td>
+                              <td>{{ user[0] }}</td>
+                              <td>{{ user[1] }}</td>
+                              <td>{{ user[2] }}</td>
+                              <td>{{ user[3] }}</td>
+                              <td>{{ user[4] }}</td>
+                              <td>{{ user[5] }}</td>
+                              <td>{{ user[6] }}</td>
+                              <form method=put action="/file/{{loop.index}}" enctype=multipart/form-data>
+                                <td>
+                                  <input type="float" name="programacion" value={{user[7]}}>
+                                </td>
+                                <td>
+                                  <button type="submit" class="btn btn-info">actualizar</button>
+                                </td>
+                              </form>
+                          </tr>
+                      {% endfor %}
+                  </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
