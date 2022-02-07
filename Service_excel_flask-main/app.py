@@ -47,7 +47,7 @@ def upload_file():
             os.mkdir('archives')
 
         if len(os.listdir('archives')) >= 2:
-            ruta="https://git.heroku.com/tintoreyprogramacion.git/combination"
+            ruta="combination"
             tipo='ya se poseen los archivos necesarios. Visualizar combinacion'
         else:
             file  = request.files['file']
@@ -67,7 +67,7 @@ def upload_file():
     return render_template('index.html',data=cobinacion)
 
 # la peticion put se reemplaza por get debido que html solo soporta post y get
-@app.route('https://git.heroku.com/tintoreyprogramacion.git/file/<int:rowindex>', methods=['GET'])
+@app.route('/file/<int:rowindex>', methods=['GET'])
 def update(rowindex):
     ab = load_workbook(filename = 'combinacion.xlsx', read_only=False)
     cv = ab['Sheet']
@@ -80,11 +80,11 @@ def update(rowindex):
 
     ab.save("combinacion.xlsx")
 
-    ruta="https://git.heroku.com/tintoreyprogramacion.git/file"
+    ruta="/file"
 
     return render_template('get_update.html',tipo='Actualizado correctamente',ruta=ruta)
 
-@app.route('https://git.heroku.com/tintoreyprogramacion.git/combination', methods=['GET'])
+@app.route('/combination', methods=['GET'])
 def combination():
 
     array1 = []
@@ -155,7 +155,7 @@ def combination():
 
     libro.save(filename="combinacion.xlsx")
 
-    ruta="https://git.heroku.com/tintoreyprogramacion.git/file"
+    ruta="/file"
 
     return render_template('get_update.html',tipo='Combinacion correcta',ruta=ruta)
 
